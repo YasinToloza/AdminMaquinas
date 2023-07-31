@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Mantenimiento Maquinas</title>
+
+<link href="https://fonts.googleapis.com/css?family=Merienda+One"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+.container{
+background-color: rgba(248, 248, 255,0.5) !important;
+border-radius: 5px;
+width: 45%;
+}
+</style>
+</head>
+	<header th:replace="listado-clientes :: header"></header>
+<body>
+<br>
+<br>
+<br>
+<br>
+
+	<div class="container">
+
+		<main>
+		<section style="width: 100%;float: none;">
+				<h1 style="text-align: center;">Mantenimiento Maquinas</h1>
+				<form action="/maquinas/actualizar" method="post" th:object="${maquina}">
+					<div class="form-group">
+						<label for="inputAddress">Codigo </label> <input type="text"
+							th:field="*{id_maquina}" class="form-control" id="inputAddress"
+							placeholder="Codigo">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">Nombre</label> <input type="text"
+							th:field="*{nom_Maquina}" class="form-control" id="inputAddress"
+							placeholder="Nombre">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">SKU</label> <input type="text"
+							th:field="*{SKU}" class="form-control" id="inputAddress"
+							placeholder="SKU">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">Stock</label> <input type="text"
+							th:field="*{stock}" class="form-control" id="inputAddress"
+							placeholder="Stock">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">Precio</label> <input type="text"
+							th:field="*{precio}" class="form-control" id="inputAddress"
+							placeholder="Precio">
+					</div>
+						<div class="form-group">
+						<label for="inputState">Marca</label> <select id="inputState"
+							class="form-control" th:field="*{marca}">
+							<option selected value="0">Seleccione...</option>
+
+							<option th:each="m:${lstMarcas}" th:value="${m.id_marca}"
+								th:text="${m.id_marca} + '-' + ${m.nom_Marca}"></option>
+
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Registrar</button>
+					<a href="/listadoMaq" class="btn btn-primary">Volver al Listado</a>
+				</form>
+				<br>
+					<div th:class="${clasemensaje}" role="alert"  th:text="${mensaje}"></div>
+			</section>
+		</main>
+
+	</div>
+
+</body>
+</html>
